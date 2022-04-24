@@ -12,9 +12,10 @@ You have successfully logged in
 <?php
 
 $servername = "localhost";
-$username = "dlisangi1";
-$password = "dlisangi1";
-$dbname = "dlisangi1";
+$username = "root";
+$password = "root";
+$db_db = "practice";
+$db_port = 8889;
 
 // The above used four variables servername,username,password and dbname 
 // are according to my environment setting.
@@ -31,7 +32,8 @@ $conn = new mysqli(
 	$servername,
 	$username,
 	$password,
-	$dbname
+	$db_db,
+	$db_port
 );
 
 // Check connection
@@ -54,6 +56,7 @@ if ($conn->query($sql) === TRUE) {
 //table already exists
 // Handle this condition
 echo "Artists table already exists. Click OK to continue.<br/>";
+echo mysqli_error($conn);
 }
 
 $conn->close();

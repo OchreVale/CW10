@@ -11,15 +11,17 @@
 	<div>
 <?php
 $servername = "localhost";
-$username = "dlisangi1";
-$password = "dlisangi1";
-$dbname = "dlisangi1";
+$username = "root";
+$password = "root";
+$db_db = "practice";
+$db_port = 8889;
 
 
-$conn = new mysqli($servername,
+$conn = @new mysqli($servername,
  $username,
  $password,
- $dbname);
+ $db_db,
+$db_port);
 
 // Step -1 : Create DB connection
 // Step-2 : check if the DB connection is established or not
@@ -29,25 +31,26 @@ if ($conn->connect_error){
 
 // Get the data from the "addAlbum" page and assign it to the below variables
 
-$artist= $_POST["artist"];
-$name= $_POST["name"];
+$artist_name= $_POST["artist"];
+$name_= $_POST["name"];
 $genre=$_POST["genre"];
 
 $rdate=$_POST["rdate"];
-if (! is_null($artist) and ! is_null($name) and ! is_null($genre) and ! is_null($rdate)){
+if (! is_null($artist_name) and ! is_null($name_) and ! is_null($genre) and ! is_null($rdate)){
 
 
 // write the sql query in php file to Insert the data into the table
 
-$sql = "INSERT INTO albums (artist, name, genre, rdate)
-VALUES ($artist, $name, $genre, $rdate)";
+$sql = "INSERT INTO albums ( artist, name, genre, rdate)
+VALUES ('$artist_name', '$name_', '$genre', '$rdate')";
 //$conn->query($sql);
-//if ($conn->query($sql) === TRUE) {
- // echo "New Album successfully saved";
-// else {
-  // echo "Couldn't add new album to the database".$sql;
-//}
-//}
+if ($conn->query($sql) === TRUE) {
+ echo "New Album successfully saved";
+}
+else {
+  echo mysqli_error($conn);
+}
+}
 
 $conn->close();
 ?>

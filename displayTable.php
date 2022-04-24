@@ -26,13 +26,14 @@ tr:nth-child(1){font-weight: bold;}
 
 <?php
 $servername = "localhost";
-$username = "dlisangi1";
-$password = "dlisangi1";
-$dbname = "dlisangi1";
+$username = "root";
+$password = "root";
+$db_db = "practice";
+$db_port = 8889;
 
 // Step -1 : Create DB connection
 // Step-2 : check if the DB connection is established or not
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $db_db, $db_port);
 
 if($conn->connect_error){
 	die("Couldn't communicate with the database. <br/>");
